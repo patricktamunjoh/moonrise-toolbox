@@ -1,0 +1,19 @@
+{
+	"name": "games.moonrise.toolbox",
+	"version": "1.0.0",
+	"displayName": "Moonrise Toolbox",
+	"description": "A collection of utilities and tools.",
+	"unity": "2019.1",
+	"documentationUrl": "https://github.com/TheMoonrise/toolbox/blob/main/README.md",
+	"changelogUrl": "https://github.com/TheMoonrise/toolbox/blob/main/CHANGELOG.md",
+	"licensesUrl": "https://github.com/TheMoonrise/toolbox/blob/main/LICENSE.md",
+	"keywords": [
+		"Utilities",
+		"Scripts"
+	],
+	"author": {
+		"name": "Patrick Tamunjoh",
+		"email": "contact@moonrise.games",
+		"url": "https://moonrise.games"
+	}
+}

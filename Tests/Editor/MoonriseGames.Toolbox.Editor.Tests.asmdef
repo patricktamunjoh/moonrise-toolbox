@@ -1,0 +1,29 @@
+{
+    "name": "MoonriseGames.Toolbox.Editor.Tests",
+    "rootNamespace": "MoonriseGames.Toolbox.Tests.Editor",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "MoonriseGames.Toolbox",
+        "MoonriseGames.Toolbox.Editor",
+        "MoonriseGames.Toolbox.Tests.Utilities"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Moq.dll",
+        "Castle.Core.dll",
+        "System.Diagnostics.EventLog.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
