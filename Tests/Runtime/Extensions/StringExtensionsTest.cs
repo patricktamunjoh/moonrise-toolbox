@@ -62,5 +62,13 @@ namespace MoonriseGames.Toolbox.Tests.Extensions
             Assert.AreEqual("exa...", "example".Clamped(6, "..."));
             Assert.AreEqual("e...", "example".Clamped(4, "..."));
         }
+
+        [Test]
+        public void ShouldRemoveLineBreaks()
+        {
+            Assert.AreEqual("example line", "example\nline".SingleLine());
+            Assert.AreEqual("example line", "example line".SingleLine());
+            Assert.AreEqual("example line", "example\n   line".SingleLine());
+        }
     }
 }

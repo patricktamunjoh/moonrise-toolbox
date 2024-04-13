@@ -11,7 +11,7 @@ namespace MoonriseGames.Toolbox.Architecture
         private static T Instance { get; set; }
         public static T Unit => GetInstance();
 
-        private bool IsInstance => Equals(Unit);
+        private bool IsInstance { get; set; }
 
         private static T GetInstance()
         {
@@ -28,10 +28,10 @@ namespace MoonriseGames.Toolbox.Architecture
 
         private void Awake()
         {
-            if (Application.isPlaying && IsInstance.Not())
+            if (Application.isPlaying && Equals(Unit).Not())
                 Destroy(gameObject);
 
-            if (Application.isPlaying && IsInstance)
+            if (Application.isPlaying && Equals(Unit))
                 AwakeInstance();
         }
 
@@ -41,7 +41,10 @@ namespace MoonriseGames.Toolbox.Architecture
                 OnDestroyInstance();
         }
 
-        protected virtual void AwakeInstance() { }
+        protected virtual void AwakeInstance()
+        {
+            IsInstance = true;
+        }
 
         protected virtual void OnDestroyInstance() { }
     }

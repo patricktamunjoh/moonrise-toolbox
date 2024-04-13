@@ -93,7 +93,7 @@ namespace MoonriseGames.Toolbox.Utilities
             if (path.Length < 2)
                 return;
 
-            for (var i = 1; i < path.Length - 1; i++)
+            for (var i = 1; i < path.Length; i++)
                 Gizmos.DrawLine(path[i - 1], path[i]);
 
             DrawArrow(path[^2], path[^1]);

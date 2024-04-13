@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MoonriseGames.Toolbox.Constants;
 using MoonriseGames.Toolbox.Extensions;
 using MoonriseGames.Toolbox.Validation;
@@ -32,8 +33,11 @@ namespace MoonriseGames.Toolbox.Audio
         [SerializeField, Space]
         private AudioClip[] _audioClips;
 
-        private int IndexLastRandomClip { get; set; }
-        private float TimeLastPlayback { get; set; } = float.MinValue;
+        [NonSerialized]
+        private int _indexLastRandomClip;
+
+        [NonSerialized]
+        private float _timeLastPlayback = float.MinValue;
 
         public float Volume => _volume;
         public float MaxDuration => _audioClips.Max(x => x.length);
@@ -64,7 +68,7 @@ namespace MoonriseGames.Toolbox.Audio
             else
                 AudioService.Unit.Play(this, location, config, clip);
 
-            TimeLastPlayback = CurrentTime;
+            _timeLastPlayback = CurrentTime;
         }
 
         public void Stop(AudioPlaybackLocation location = null)
@@ -73,7 +77,7 @@ namespace MoonriseGames.Toolbox.Audio
             AudioService.Unit.Stop(this, location);
         }
 
-        private bool IsPlaybackPossible() => _fizzleProbability.Check().Not() && _debounceDuration.HasElapsed(TimeLastPlayback, true);
+        private bool IsPlaybackPossible() => _fizzleProbability.Check().Not() && _debounceDuration.HasElapsed(_timeLastPlayback, true);
 
         private AudioClip GetNextAudioClip(int? index)
         {
@@ -87,10 +91,10 @@ namespace MoonriseGames.Toolbox.Audio
         {
             var index = Random.Range(0, _audioClips.Length);
 
-            if (index == IndexLastRandomClip)
+            if (index == _indexLastRandomClip)
                 index = (index + 1) % _audioClips.Length;
 
-            IndexLastRandomClip = index;
+            _indexLastRandomClip = index;
             return _audioClips[index];
         }
 

@@ -41,7 +41,7 @@ namespace MoonriseGames.Toolbox.Editor.PropertyDrawers
 
         protected override void OnDrawLabel(Rect position, SerializedProperty property, GUIContent label)
         {
-            var translation = Translation.Clamped((int)position.width / 7 - label.text.Length, "...");
+            var translation = Translation.SingleLine().Clamped((int)position.width / 7 - label.text.Length, "...");
 
             if (string.IsNullOrEmpty(translation).Not())
                 translation = " - " + translation;
