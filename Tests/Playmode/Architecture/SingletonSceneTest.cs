@@ -50,6 +50,16 @@ namespace MoonriseGames.Toolbox.Playmode.Tests.Architecture
         }
 
         [UnityTest]
+        public IEnumerator ShouldFindInactiveInstance()
+        {
+            var sut01 = new GameObject().AddComponent<SingletonSceneSample>();
+            sut01.gameObject.SetActive(false);
+            yield return null;
+
+            Assert.AreEqual(sut01, SingletonSceneSample.Unit);
+        }
+
+        [UnityTest]
         public IEnumerator ShouldCallInstanceLifecycleMethodsOnlyForInstance()
         {
             var instance = new GameObject().AddComponent<SingletonSceneSample>();

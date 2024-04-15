@@ -18,7 +18,7 @@ namespace MoonriseGames.Toolbox.Architecture
             if (Instance.IsNull().Not())
                 return Instance;
 
-            Instance = FindObjectsOfType<MonoBehaviour>().OfType<T>().FirstOrDefault();
+            Instance = FindObjectsOfType<MonoBehaviour>(true).OfType<T>().FirstOrDefault();
 
             if (Instance.IsNull())
                 throw new SingletonNotAvailableException($"No instance of {typeof(T).Name} found in the active hierarchy.");
