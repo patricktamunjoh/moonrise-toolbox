@@ -26,6 +26,6 @@ namespace MoonriseGames.Toolbox.Extensions
             return text[..(maxLength - ellipsis.Length)] + ellipsis;
         }
 
-        public static string SingleLine(this string text) => Regex.Replace(text, @"\n\s+", " ");
+        public static string SingleLine(this string text) => Regex.Replace(text, @"\n\s*", " ");
     }
 }
