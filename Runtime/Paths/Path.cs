@@ -87,9 +87,7 @@ namespace MoonriseGames.Toolbox.Paths
         }
 
         private float GetProgressInInterval(float x, float from, float to) => to <= from ? 0 : Mathf.Clamp01((x - from) / (to - from));
-
-        private float GetCurveAngle(Vector3 a, Vector3 b, Vector3 c) => Vector3.Angle(b - a, c - b);
-
+        
         public IEnumerator<Vector3> GetEnumerator() => Positions.Select(x => x.point).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

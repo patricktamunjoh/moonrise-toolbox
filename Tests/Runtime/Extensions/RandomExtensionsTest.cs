@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using MoonriseGames.Toolbox.Extensions;
+using MoonriseGames.Toolbox.Types;
 using Moq;
 using NUnit.Framework;
 
@@ -40,6 +41,28 @@ namespace MoonriseGames.Toolbox.Tests.Extensions
             random.Setup(x => x.NextDouble()).Returns(0);
 
             0.3f.Check(random.Object);
+            random.Verify(x => x.NextDouble());
+        }
+
+        [Test]
+        public void ShouldReturnValueWithinIntervalWhenSampling()
+        {
+            var sut = new Interval(1, 2);
+
+            for (var i = 0; i < 100; i++)
+            {
+                Assert.GreaterOrEqual(sut.Sample(), 1);
+                Assert.LessOrEqual(sut.Sample(), 2);
+            }
+        }
+
+        [Test]
+        public void ShouldSampleArrayUsingSystemRandom()
+        {
+            var random = new Mock<Random>();
+            random.Setup(x => x.NextDouble()).Returns(0);
+
+            new Interval(1, 2).Sample(random.Object);
             random.Verify(x => x.NextDouble());
         }
 

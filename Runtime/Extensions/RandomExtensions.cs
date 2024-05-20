@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MoonriseGames.Toolbox.Types;
 using Random = UnityEngine.Random;
 
 namespace MoonriseGames.Toolbox.Extensions
@@ -10,6 +11,9 @@ namespace MoonriseGames.Toolbox.Extensions
     {
         public static bool Check(this float probability, System.Random random = null) =>
             probability != 0 && (random?.NextDouble() ?? Random.value) <= probability;
+
+        public static float Sample(this Interval interval, System.Random random = null) =>
+            ((float?)random?.NextDouble() ?? Random.value) * (interval.End - interval.Start) + interval.Start;
 
         public static T Sample<T>(this IList<T> list, System.Random random = null)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using MoonriseGames.Toolbox.Editor.Constants;
 using MoonriseGames.Toolbox.Extensions;
 using UnityEditor;
@@ -20,12 +21,16 @@ namespace MoonriseGames.Toolbox.Editor.PropertyDrawers
             }
 
             pos = GetFinalPosition(pos, property);
-            EditorGUI.BeginProperty(pos, label, property);
+            label = EditorGUI.BeginProperty(new Rect(pos.x - 500, pos.y, pos.width + 50, pos.height), label, property);
 
-            OnDrawLabel(new Rect(pos.x, pos.y, Sizes.WidthLabel, pos.height), property, label);
+            var labelPosition = new Rect(pos.x, pos.y, Sizes.WidthLabel, pos.height);
+            OnDrawLabel(labelPosition, property, label);
 
             var contentWidth = Sizes.WidthLabel + Sizes.SpacingHorizontalSmall;
-            OnDrawContent(new Rect(pos.x + contentWidth, pos.y, pos.width - contentWidth, pos.height), property);
+            var contentPosition = new Rect(pos.x + contentWidth, pos.y, pos.width - contentWidth, pos.height);
+            OnDrawContent(contentPosition, property);
+
+            EditorGUI.EndProperty();
         }
 
         protected virtual string GetErrorMessage(SerializedProperty property) => throw new NotImplementedException();

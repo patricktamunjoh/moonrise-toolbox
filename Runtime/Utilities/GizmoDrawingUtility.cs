@@ -98,5 +98,16 @@ namespace MoonriseGames.Toolbox.Utilities
 
             DrawArrow(path[^2], path[^1]);
         }
+
+        public static void DrawPath(Vector2[] path)
+        {
+            if (path.Length < 2)
+                return;
+
+            for (var i = 1; i < path.Length; i++)
+                Gizmos.DrawLine(path[i - 1], path[i]);
+
+            DrawArrow(path[^2], path[^1]);
+        }
     }
 }
