@@ -45,11 +45,29 @@ namespace MoonriseGames.Toolbox.Localization
             }
         }
 
-        public string GetLocalization(string key, string fallback = "n/a") =>
-            (_translation != null ? _translation[(key, Language)] : null) ?? fallback;
+        public string GetLocalization(string key, string fallback = "n/a")
+        {
+            try
+            {
+                return _translation[(key, Language)] ?? fallback;
+            }
+            catch
+            {
+                return fallback;
+            }
+        }
 
-        public string GetClosestKey(string query, string fallback = null) =>
-            (_translation != null ? _translation.GetClosestKey(query) : null) ?? fallback;
+        public string GetClosestKey(string query, string fallback = null)
+        {
+            try
+            {
+                return _translation.GetClosestKey(query) ?? fallback;
+            }
+            catch
+            {
+                return fallback;
+            }
+        }
 
         public bool IsLocalizationAvailable(string key) => GetLocalization(key, null) != null;
 
