@@ -32,5 +32,7 @@ namespace MoonriseGames.Toolbox.Types
         public bool IsInside(float value) => value >= Start && value <= End;
 
         public float Lerp(float t) => Mathf.Lerp(_start, _end, Mathf.Clamp01(t));
+
+        public float InverseLerp(float value) => Mathf.InverseLerp(_start, _end, value);
     }
 }

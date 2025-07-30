@@ -29,5 +29,17 @@ namespace MoonriseGames.Toolbox.Tests.Types
             Assert.AreEqual(4, sut.Lerp(3));
             Assert.AreEqual(3, sut.Lerp(0.5f));
         }
+
+        [Test]
+        public void ShouldInverseLerpBetweenBoundaries()
+        {
+            var sut = new Interval(2, 4);
+
+            Assert.AreEqual(0, sut.InverseLerp(2));
+            Assert.AreEqual(0, sut.InverseLerp(0));
+            Assert.AreEqual(0.5, sut.InverseLerp(3));
+            Assert.AreEqual(1, sut.InverseLerp(4));
+            Assert.AreEqual(1, sut.InverseLerp(5));
+        }
     }
 }
