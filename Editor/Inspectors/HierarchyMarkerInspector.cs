@@ -31,7 +31,6 @@ namespace MoonriseGames.Toolbox.Editor.Inspectors
             DrawSeparatorBackground(marker, rect);
 
             DrawText(marker, rect);
-            DrawSeparator(marker, rect);
         }
 
         private static void DrawSeparatorBackground(HierarchyMarker marker, Rect rect)
@@ -87,25 +86,6 @@ namespace MoonriseGames.Toolbox.Editor.Inspectors
             };
 
             EditorGUI.LabelField(rect.Inset(left: 18, right: 18), marker.name, style);
-        }
-
-        private static void DrawSeparator(HierarchyMarker marker, Rect rect)
-        {
-            if (marker.IsSeparator.Not())
-                return;
-
-            var style = new GUIStyle
-            {
-                normal = new GUIStyleState { textColor = Color.white },
-                fontStyle = FontStyle.Normal
-            };
-
-            var rectEndOverlay = new Rect(rect.x + rect.width - 18, rect.y, 100, rect.height);
-
-            ColorUtility.TryParseHtmlString(BACKGROUND_SEPARATOR, out var color);
-
-            EditorGUI.LabelField(rect, new string('⸺', 100), style);
-            EditorGUI.DrawRect(rectEndOverlay, color);
         }
     }
 }
